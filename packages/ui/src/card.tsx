@@ -1,25 +1,21 @@
-export function Card({
-  className,
-  title,
-  children,
-  href,
-}: {
-  className?: string;
+
+
+interface CardProp {
   title: string;
-  children: React.ReactNode;
-  href: string;
-}): JSX.Element {
+  children?: React.ReactNode;
+};
+export function Card({
+  title,
+  children
+}: CardProp): JSX.Element {
   return (
-    <a
-      className={className}
-      href={`${href}?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"`}
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      <h2>
-        {title} <span>-&gt;</span>
-      </h2>
-      <p>{children}</p>
-    </a>
+    <div className="border p-4">
+      <h1 className="text-xl border-b pb-2">
+        {title}
+      </h1>
+      <p>
+        {children}
+      </p>
+    </div>
   );
 }

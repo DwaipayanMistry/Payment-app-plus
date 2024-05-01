@@ -1,14 +1,12 @@
-// import { PrismaClient } from "@repo/db/client";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./lib/auth";
+import { redirect } from "next/navigation";
 
-import UseBalance from "./user/useBalance";
-
-
-export default function Page(): JSX.Element {
-  // const client = new PrismaClient()
-  return (
-<>
-<div className="bg-red-200">user APP</div>
-<UseBalance></UseBalance>
-</>
-  );
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+  if (session?.user) {
+    redirect("/dashboard")
+  } else {
+    redirect("/api/auth/signin")
+  }
 }

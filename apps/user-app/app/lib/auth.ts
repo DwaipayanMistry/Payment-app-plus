@@ -11,6 +11,7 @@ export const authOptions = {
             },
             async authorize(credentials: any) {
                 const hashedPassword = await bcrypt.hash(credentials.password, 10);
+                // console.log("hashed password "+hashedPassword)
                 const existingUser = await db.user.findFirst({
                     where: {
                         number: credentials.phone
@@ -47,7 +48,7 @@ export const authOptions = {
         })
     ],
     secret: process.env.JWT_SECRET || "secret",
-    callback: {
+    callbacks: {
         async session({ token, session }: any) {
             session.user.id = token.sub
             return session
