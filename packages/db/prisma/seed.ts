@@ -9,6 +9,12 @@ async function main() {
       number: '9999999999',
       password: 'alice',
       name: 'alice',
+      Balance: {
+        create: {
+            amount: 20000,
+            locked: 0
+        }
+      },
       OnRampTransaction: {
         create: {
           startTime: new Date(),
@@ -27,6 +33,12 @@ async function main() {
       number: '9999999998',
       password: 'bob',
       name: 'bob',
+      Balance: {
+        create: {
+            amount: 2000,
+            locked: 0
+        }
+      },
       OnRampTransaction: {
         create: {
           startTime: new Date(),

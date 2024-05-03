@@ -2,8 +2,8 @@
     "name": "@repo/db",
     "version": "0.0.0",
     "dependencies": {
-        "@prisma/client": "^5.14.0-dev.46",
-        "prisma": "^5.14.0-dev.46"
+        "@prisma/client": "^5.14.0-dev.47",
+        "prisma": "^5.14.0-dev.47"
     },
     "prisma": {
         "seed": "ts-node prisma/seed.ts"

@@ -20,7 +20,7 @@ model User {
   number            String              @unique
   password          String
   OnRampTransaction OnRampTransaction[]
-  Balance           Balance?
+  Balance           Balance[]
 }
 
 model Merchant {

@@ -4,54 +4,56 @@ import { z } from "zod";
 const schema = z.object({
     token: z.string(),
     userId: z.string(),
-    amount: z.number()
+    amount: z.string()
 })
 
 interface paymentInformationInterface {
     token: string;
     userId: string;
-    amount: number;
+    amount: string;
 }
 
 const app = express();
-app.post("/hdfcWebtool", async (req, res) => {
+app.use(express.json())
+app.post("/hdfcWebhook", async (req, res) => {
+
     const { success, error } = schema.safeParse(req.body)
     if (success) {
-        const paymentInformation: paymentInformationInterface = {
-            token: req.body.token,
-            userId: req.body.userId,
-            amount: req.body.amount
-        }
-        try {
-            await db.$transaction([
-                db.balance.update({
-                    where: {
-                        userId: paymentInformation.userId
-                    },
-                    data: {
-                        amount: {
-                            increment: paymentInformation.amount
-                        }
+    const paymentInformation: paymentInformationInterface = {
+        token: req.body.token,
+        userId: req.body.userId,
+        amount: req.body.amount
+    }
+    try {
+        await db.$transaction([
+            db.balance.updateMany({
+                where: {
+                    userId: paymentInformation.userId
+                },
+                data: {
+                    amount: {
+                        increment: Number(paymentInformation.amount)
                     }
-                }),
-                db.onRampTransaction.update({
-                    where: {
-                        token: paymentInformation.token
-                    },
-                    data: {
-                        status: "Success",
-                    }
-                })
-            ]);
-            res.json({
-                message: "Captured"
+                }
+            }),
+            db.onRampTransaction.updateMany({
+                where: {
+                    token: paymentInformation.token
+                },
+                data: {
+                    status: "Success",
+                }
             })
-        } catch (error) {
-            console.error(error);
-            res.status(411).json({
-                message: "Error while processing webhook"
-            })
-        }
+        ]);
+        res.json({
+            message: "Captured"
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(411).json({
+            message: "Error while processing webhook"
+        })
+    }
     }
     else {
         return res.status(567).json({
@@ -60,6 +62,6 @@ app.post("/hdfcWebtool", async (req, res) => {
     }
 })
 
-app.listen(3003,()=>{
+app.listen(3003, () => {
     console.log("Server started on port 3003");
 });
