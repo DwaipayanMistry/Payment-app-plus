@@ -4,18 +4,15 @@ interface CardProp {
   title: string;
   children?: React.ReactNode;
 };
-export function Card({
-  title,
-  children
-}: CardProp): JSX.Element {
+export function Card({ title, children }: CardProp): JSX.Element {
   return (
-    <div className="border p-4">
+    <div className="border div-4">
       <h1 className="text-xl border-b pb-2">
         {title}
       </h1>
-      <p>
+      <div>
         {children}
-      </p>
+      </div>
     </div>
   );
 }
