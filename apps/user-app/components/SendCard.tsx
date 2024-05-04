@@ -9,7 +9,7 @@ export function SendCard() {
     const [number, setNumber] = useState("");
     const [amount, setAmount] = useState("");
     return (
-        <div className="h-[90vh]">
+        <div className="h-[100%]">
             <Center>
                 <Card title="Send">
                     <div className="min-w-72 pt-2">
