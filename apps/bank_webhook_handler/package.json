@@ -9,12 +9,10 @@
     "dev": "yarn run build && yarn run start"
   },
   "dependencies": {
-    "@prisma/client": "^5.14.0-dev.46",
     "@repo/db": "*",
     "@types/express": "^4.17.21",
     "esbuild": "^0.20.2",
     "express": "^4.19.2",
-    "prisma": "^5.14.0-dev.46",
     "zod": "^3.23.4"
   }
 }

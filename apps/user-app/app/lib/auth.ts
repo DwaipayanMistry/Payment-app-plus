@@ -11,7 +11,7 @@ export const authOptions = {
             },
             async authorize(credentials: any) {
                 const hashedPassword = await bcrypt.hash(credentials.password, 10);
-                console.log("hashed password=="+hashedPassword+"{}}}{{{")
+                // console.log("hashed password=="+hashedPassword+"----")
                 const existingUser = await db.user.findFirst({
                     where: {
                         number: credentials.phone

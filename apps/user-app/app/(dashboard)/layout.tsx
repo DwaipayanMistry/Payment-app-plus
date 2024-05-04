@@ -3,15 +3,16 @@ import { SidebarItem } from "../../components/SidebarItem";
 export default function Layout({ children }: { children: React.ReactNode; }): JSX.Element {
     return (
         <div className="flex">
-            <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
+            < div className = "w-72 return border-r border-slate-300 min-h-screen mr-4 pt-28" >
                 <div>
                     <SidebarItem href={"/dashboard"} title="Home" icon={<HomeIcon></HomeIcon>}></SidebarItem>
                     <SidebarItem href={"/transfer"} title="Transfer" icon={<TransferIcon></TransferIcon>}></SidebarItem>
                     <SidebarItem href={"/transactions"} title="Transactions" icon={<TransactionsIcon></TransactionsIcon>}></SidebarItem>
+                    <SidebarItem href={"/p2p"} title="P2P Transfer" icon={<P2PTransfer></P2PTransfer>}></SidebarItem>
                 </div>
-            </div>
-            {children}
-        </div>
+            </div >
+        { children }
+        </div >
     );
 }
 
@@ -29,6 +30,12 @@ function TransferIcon() {
 function TransactionsIcon() {
     return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+
+}
+function P2PTransfer() {
+    return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
     </svg>
 
 }
